@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class StudentDao {
+
+    //insert student
     public static boolean insertStudentToDb(Student st){
         boolean flag = false;
         try {
@@ -31,7 +33,7 @@ public class StudentDao {
         return flag;
     }
 
-    // student deletion
+    // student deletion using id
     public static boolean deleteStudent(int userId) {
         boolean flag = false;
         try {
@@ -55,6 +57,8 @@ public class StudentDao {
         }
         return flag;
     }
+
+    //displaying all the student
     public static void  showStudent() {
         boolean flag = false;
         try {
