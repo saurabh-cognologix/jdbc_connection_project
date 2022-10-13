@@ -49,6 +49,7 @@ public class Main {
                 }
             } else if (c==3) {
                 //display student
+                StudentDao.showStudent();
             } else if (c==4) {
                 //exit
                 break;

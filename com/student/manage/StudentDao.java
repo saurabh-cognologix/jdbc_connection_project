@@ -2,6 +2,8 @@ package com.student.manage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class StudentDao {
     public static boolean insertStudentToDb(Student st){
@@ -29,6 +31,7 @@ public class StudentDao {
         return flag;
     }
 
+    // student deletion
     public static boolean deleteStudent(int userId) {
         boolean flag = false;
         try {
@@ -51,5 +54,33 @@ public class StudentDao {
             e.printStackTrace();
         }
         return flag;
+    }
+    public static void  showStudent() {
+        boolean flag = false;
+        try {
+            //jdbc code
+            Connection con = CP.createConnection();
+            String q = "select * from student";
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(q);
+            while (resultSet.next()){
+                Integer id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String phone = resultSet.getString(3);
+                String city = resultSet.getString(4);
+
+                System.out.println("Id :" +id);
+                System.out.println("Name :" +name);
+                System.out.println("Phone :" +phone);
+                System.out.println("City :" +city);
+                System.out.println("-------------------------------------");
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
