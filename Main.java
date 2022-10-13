@@ -39,6 +39,14 @@ public class Main {
                 System.out.println(student);
             } else if (c==2) {
                 //delete student
+                System.out.println("Enter Student Id to delete : ");
+                int userId = Integer.parseInt(br.readLine());
+                boolean result = StudentDao.deleteStudent(userId);
+                if(result){
+                    System.out.println("Student is deleted successfully");
+                }else{
+                    System.out.println("Something went wrong");
+                }
             } else if (c==3) {
                 //display student
             } else if (c==4) {

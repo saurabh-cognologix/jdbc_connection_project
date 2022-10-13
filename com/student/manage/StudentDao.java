@@ -28,4 +28,28 @@ public class StudentDao {
         }
         return flag;
     }
+
+    public static boolean deleteStudent(int userId) {
+        boolean flag = false;
+        try {
+            //jdbc code
+            Connection con = CP.createConnection();
+            String q = "delete from student where sid=? ";
+
+            //Prepared Statement
+            PreparedStatement preparedStatement = con.prepareStatement(q);
+
+            //set the value of parameter
+            preparedStatement.setInt(1, userId);
+
+
+            //execute
+            preparedStatement.executeUpdate();
+            flag=true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }
