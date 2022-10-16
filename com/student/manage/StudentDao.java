@@ -59,8 +59,8 @@ public class StudentDao {
     }
 
     //displaying all the student
-    public static void  showStudent() {
-        boolean flag = false;
+ /*   public static void  showStudent() {
+
         try {
             //jdbc code
             Connection con = CP.createConnection();
@@ -86,5 +86,54 @@ public class StudentDao {
             e.printStackTrace();
         }
 
+    }*/
+
+    public static void showStudent() {
+        try{
+            //jdbc code;
+            Connection con = CP.createConnection();
+            String q = "select * from student";
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(q);
+
+            while(resultSet.next()){
+                Integer id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String phone = resultSet.getString(3);
+                String city = resultSet.getString(4);
+
+                System.out.println("ID : "+id);
+                System.out.println("Name : "+name);
+                System.out.println("Phone Number : "+phone);
+                System.out.println("City : "+city);
+                System.out.println("..........................");
+
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
+
+    public static boolean updateStudent(Student st,Integer userId){
+        boolean flag = false;
+        try{
+            Connection conn = CP.createConnection();
+            String query = "UPDATE student SET sname = ?, sphone = ? ,scity = ? WHERE sid = userId";
+            //Prepared Statement
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, st.getStudentName());
+            preparedStatement.setString(2,st.getStudentPhone());
+            preparedStatement.setString(3, st.getStudentCity());
+
+            //execute
+            preparedStatement.executeUpdate();
+            flag=true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
 }
